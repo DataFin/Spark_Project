@@ -1,7 +1,7 @@
 # ============================================================
 # pipeline.py  -  Orchestrateur principal
 # Projet Jour 4 - Pipeline Spark ONISR (Accidents corporels)
-# Équipe : [noms]
+# Équipe : [Sandrine YAO; Fride Audrey MOBOU; Destiné BEHANZIN]
 # ============================================================
 # Architecture : bronze -> silver (Parquet) -> gold (analyses)
 #
