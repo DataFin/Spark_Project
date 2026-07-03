@@ -1,0 +1,23 @@
+# ─── Core Spark ───────────────────────────────────────────
+pyspark==4.0.0
+
+# ─── Formats & IO ─────────────────────────────────────────
+pyarrow==17.0.0          # lecture/écriture Parquet
+fastparquet==2024.11.0   # alternative Parquet (benchmark formats)
+
+# ─── Data manipulation ────────────────────────────────────
+pandas==2.2.3            # pandas_udf + petites sorties gold
+numpy==1.26.4
+
+# ─── Visualisation (rapport + exploration) ────────────────
+matplotlib==3.9.2
+seaborn==0.13.2
+
+# ─── Notebook ─────────────────────────────────────────────
+jupyter==1.1.1
+ipykernel==6.29.5
+
+# ─── Utilitaires ──────────────────────────────────────────
+python-dotenv==1.0.1     # variables d'environnement
+findspark==2.0.1         # trouver SPARK_HOME dans le notebook
+tqdm==4.66.5             # barres de progression
