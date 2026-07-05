@@ -86,7 +86,7 @@ Move-Item "$env:USERPROFILE\Downloads\usagers-2022.csv"          "data\bronze\us
 python src\pipeline.py
 
 # Lancer le bonus streaming (après pipeline.py)
-python src\06_streaming.py
+python src\streaming.py
 ```
 
 ** Ordre obligatoire :** lancer `pipeline.py` avant `streaming.py` — le streaming utilise la couche silver générée par le pipeline.
