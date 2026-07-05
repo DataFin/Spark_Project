@@ -1,7 +1,7 @@
 # ============================================================
 # pipeline.py  -  Orchestrateur principal
 # Projet Jour 4 - Pipeline Spark ONISR (Accidents corporels)
-# Équipe : [Sandrine YAO; Fride Audrey MOBOU; Destiné BEHANZIN]
+# Équipe : MOBOU Audrey, YAO Sandrine, BEHANZIN Destiné
 # ============================================================
 # Architecture : bronze -> silver (Parquet) -> gold (analyses)
 #
@@ -22,7 +22,8 @@ from ingestion       import load_bronze
 from nettoyage       import nettoyer_et_ecrire_silver
 from analyses        import lire_silver, analyse1_gravite_par_atm, \
                             analyse2_accidents_par_type_route, \
-                            analyse3_classement_departements
+                            analyse3_classement_departements, \
+                            analyse_temporelle
 from optimisation    import mesurer_broadcast_join
 from exploration_aqe import benchmark_aqe
 
@@ -43,10 +44,11 @@ spark = (
     .config("spark.sql.shuffle.partitions", "8")
     .config("spark.sql.adaptive.enabled", "true")
     .config("spark.driver.memory", "2g")
+    .config("spark.sql.debug.maxToStringFields", "100")  # ← ajoute cette ligne
     .getOrCreate()
 )
 spark.sparkContext.setLogLevel("WARN")
-print("✅ Session Spark démarrée — Spark UI : http://localhost:4040")
+print(" Session Spark démarrée — Spark UI : http://localhost:4040")
 
 # ─────────────────────────────────────────────────────────────
 # EXÉCUTION DU PIPELINE
@@ -65,6 +67,7 @@ silver_carac, silver_usag, silver_lieux, silver_veh = lire_silver(spark, SILVER)
 analyse1_gravite_par_atm(silver_carac, silver_usag, GOLD)
 analyse2_accidents_par_type_route(silver_carac, silver_usag, silver_lieux, GOLD)
 analyse3_classement_departements(silver_carac, silver_usag, GOLD)
+analyse_temporelle(silver_carac, silver_usag, GOLD)
 
 # Étape 6 — Optimisation broadcast
 mesurer_broadcast_join(silver_carac, silver_lieux)
@@ -73,7 +76,7 @@ mesurer_broadcast_join(silver_carac, silver_lieux)
 benchmark_aqe(spark, silver_carac, silver_usag)
 
 # ─────────────────────────────────────────────────────────────
-print("\n✅ Pipeline terminé.")
+print("\n Pipeline terminé.")
 print(f"   Résultats dans : {GOLD}")
 print("   Spark UI : http://localhost:4040")
 input("   Appuie sur Entrée pour arrêter la session Spark...\n")

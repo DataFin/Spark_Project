@@ -216,3 +216,7 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+data/bronze/
+data/stream_checkpoint/
+data/stream_input/
