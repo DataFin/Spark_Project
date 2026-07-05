@@ -110,5 +110,5 @@ def load_bronze(spark, bronze_path):
                     ("vehicules", df_veh), ("usagers", df_usag)]:
         print(f"  {nom} : {df.count()} lignes")
 
-    print("  ✅ Ingestion bronze OK")
+    print("   Ingestion bronze OK")
     return df_carac, df_lieux, df_veh, df_usag
