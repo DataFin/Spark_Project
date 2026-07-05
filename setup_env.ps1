@@ -5,39 +5,39 @@
 # Usage : .\setup_env.ps1  (depuis C:\Rendu_Spark_projet\Spark_Project)
 # ============================================================
 
-Write-Host "🔧 Vérification de Python..." -ForegroundColor Cyan
+Write-Host " Vérification de Python..." -ForegroundColor Cyan
 python --version
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "❌ Python introuvable. Installe Python 3.10+ et relance." -ForegroundColor Red
+    Write-Host " Python introuvable. Installe Python 3.10+ et relance." -ForegroundColor Red
     exit 1
 }
 
-Write-Host "🔧 Vérification de Java (requis pour Spark)..." -ForegroundColor Cyan
+Write-Host " Vérification de Java (requis pour Spark)..." -ForegroundColor Cyan
 java -version 2>&1
 if ($LASTEXITCODE -ne 0) {
-    Write-Host "❌ Java introuvable. Installe JDK 11 ou 17 et configure JAVA_HOME." -ForegroundColor Red
+    Write-Host " Java introuvable. Installe JDK 11 ou 17 et configure JAVA_HOME." -ForegroundColor Red
     exit 1
 }
 
 # ─── Création du virtualenv ──────────────────────────────
 if (-Not (Test-Path ".venv")) {
-    Write-Host "📦 Création du virtualenv .venv..." -ForegroundColor Cyan
+    Write-Host " Création du virtualenv .venv..." -ForegroundColor Cyan
     python -m venv .venv
 } else {
-    Write-Host "✅ .venv déjà présent." -ForegroundColor Green
+    Write-Host " .venv déjà présent." -ForegroundColor Green
 }
 
 # ─── Activation ──────────────────────────────────────────
-Write-Host "⚡ Activation du virtualenv..." -ForegroundColor Cyan
+Write-Host " Activation du virtualenv..." -ForegroundColor Cyan
 .venv\Scripts\Activate.ps1
 
 # ─── Installation des dépendances ────────────────────────
-Write-Host "📥 Installation des packages (requirements.txt)..." -ForegroundColor Cyan
+Write-Host " Installation des packages (requirements.txt)..." -ForegroundColor Cyan
 pip install --upgrade pip --quiet
 pip install -r requirements.txt
 
 # ─── Création des dossiers du projet ─────────────────────
-Write-Host "📁 Création de l'arborescence du projet..." -ForegroundColor Cyan
+Write-Host " Création de l'arborescence du projet..." -ForegroundColor Cyan
 $dirs = @(
     "data\bronze",
     "data\silver",
@@ -55,7 +55,7 @@ foreach ($dir in $dirs) {
 
 # ─── Vérification finale ─────────────────────────────────
 Write-Host ""
-Write-Host "✅ Environnement prêt !" -ForegroundColor Green
+Write-Host " Environnement prêt !" -ForegroundColor Green
 Write-Host ""
 Write-Host "─── Prochaines étapes ───────────────────────────────────────" -ForegroundColor Yellow
 Write-Host "1. Télécharge les CSV ONISR (lien dans data/sources-open-data.md)"
