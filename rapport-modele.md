@@ -489,7 +489,8 @@ Ces créneaux justifient les contrôles routiers renforcés le weekend en fin de
 - accidents_par_dep : 6443 lignes/s en input, 2337 lignes/s traitées
 - Les totaux se cumulent à chaque batch (Batch 0 → Batch 1 → ...)
 
-![Streaming terminal — batches]![ui_streaming_terminal.png](image-10.png) ![ui_streaming_terminal.png](image-11.png)
+![Streaming terminal — batch 0 accidents par département](image-10.png)
+ ![ui_streaming_terminal- Bacth 1 tués par condition atmosphérique.png](image-11.png)
 ![Streaming UI — 2 queries RUNNING]![ui_streaming_queries.png](image-12.png)
 
 **Conclusion :**
